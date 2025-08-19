@@ -8,12 +8,13 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import StringIO
 
-# set_page_config must come here, after import streamlit as st
+# ✅ Must be the first Streamlit command
 st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
 
-# now the rest of your code
+# Download stopwords
 nltk.download("stopwords")
 from nltk.corpus import stopwords
+
 # ===============================
 # Load Data
 # ===============================
@@ -44,7 +45,6 @@ year_col_req = get_year_column(req_df)
 # ===============================
 # Dashboard Title
 # ===============================
-st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
 st.title("🌱 Fertilizer Trends in India (2014–2024)")
 
 # ===============================
