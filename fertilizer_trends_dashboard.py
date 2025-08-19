@@ -26,6 +26,18 @@ def load_data():
 prod_df, req_df = load_data()
 
 # ===============================
+# Helper: Detect Year column safely
+# ===============================
+def get_year_column(df):
+    for col in df.columns:
+        if "year" in col.lower():
+            return col
+    return None
+
+year_col_prod = get_year_column(prod_df)
+year_col_req = get_year_column(req_df)
+
+# ===============================
 # Dashboard Title
 # ===============================
 st.title("📊 Fertilizer Trends in India (2014–2024)")
@@ -33,21 +45,29 @@ st.title("📊 Fertilizer Trends in India (2014–2024)")
 # ===============================
 # Production Capacity Trends
 # ===============================
-st.header("Fertilizer Production Capacity")
-st.line_chart(prod_df.set_index("Year"))
+if year_col_prod:
+    st.header("Fertilizer Production Capacity")
+    st.line_chart(prod_df.set_index(year_col_prod))
+else:
+    st.warning("⚠️ Could not find a 'Year' column in Production dataset.")
+    st.write("Columns available:", prod_df.columns.tolist())
 
 # ===============================
 # Requirement & Availability
 # ===============================
-st.header("Requirement, Availability & Sales")
-st.line_chart(req_df.set_index("Year"))
+if year_col_req:
+    st.header("Requirement, Availability & Sales")
+    st.line_chart(req_df.set_index(year_col_req))
+else:
+    st.warning("⚠️ Could not find a 'Year' column in Requirement dataset.")
+    st.write("Columns available:", req_df.columns.tolist())
 
 # ===============================
 # Topic Modeling (Scikit-Learn LDA)
 # ===============================
 st.header("Topic Modeling from Fertilizer Dataset")
 
-# Combine text from requirement, availability, and sales columns
+# Combine text from requirement, availability, and sales columns if present
 if all(col in req_df.columns for col in ["Requirement", "Availability", "Sales"]):
     text_data = (
         req_df["Requirement"].astype(str) + " " +
@@ -95,4 +115,3 @@ for idx, topic in enumerate(lda_model.components_):
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
     st.pyplot(fig)
-
