@@ -8,6 +8,14 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import StringIO
 
+
+
+
+st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
+
+
+
+
 # Download stopwords
 nltk.download("stopwords")
 from nltk.corpus import stopwords
