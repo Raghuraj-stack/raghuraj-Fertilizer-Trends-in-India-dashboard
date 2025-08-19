@@ -3,3 +3,4 @@ gensim==4.3.2
 streamlit==1.30.0
 pandas==2.2.2
 matplotlib==3.7.2
+numpy<2.0
