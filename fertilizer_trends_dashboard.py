@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
+from wordcloud import WordCloud
 
 # Download stopwords
 nltk.download("stopwords")
@@ -73,5 +74,14 @@ terms = vectorizer.get_feature_names_out()
 
 st.subheader("Discovered Topics from Fertilizer Data")
 for idx, topic in enumerate(lda_model.components_):
-    top_terms = [terms[i] for i in topic.argsort()[-8:]]
+    top_terms = [terms[i] for i in topic.argsort()[-15:]]  # top 15 words for cloud
     st.write(f"**Topic {idx+1}:**", ", ".join(top_terms))
+
+    # Generate word cloud
+    word_freq = {terms[i]: topic[i] for i in topic.argsort()[-30:]}  # top 30 weighted words
+    wc = WordCloud(width=600, height=400, background_color="white").generate_from_frequencies(word_freq)
+
+    fig, ax = plt.subplots()
+    ax.imshow(wc, interpolation="bilinear")
+    ax.axis("off")
+    st.pyplot(fig)
