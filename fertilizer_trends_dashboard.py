@@ -47,7 +47,11 @@ st.title("📊 Fertilizer Trends in India (2014–2024)")
 # ===============================
 if year_col_prod:
     st.header("Fertilizer Production Capacity")
-    st.line_chart(prod_df.set_index(year_col_prod))
+    prod_df_clean = prod_df.copy()
+    for col in prod_df_clean.columns:
+        if col != year_col_prod:
+            prod_df_clean[col] = pd.to_numeric(prod_df_clean[col], errors="coerce")
+    st.line_chart(prod_df_clean.set_index(year_col_prod))
 else:
     st.warning("⚠️ Could not find a 'Year' column in Production dataset.")
     st.write("Columns available:", prod_df.columns.tolist())
@@ -57,7 +61,11 @@ else:
 # ===============================
 if year_col_req:
     st.header("Requirement, Availability & Sales")
-    st.line_chart(req_df.set_index(year_col_req))
+    req_df_clean = req_df.copy()
+    for col in req_df_clean.columns:
+        if col != year_col_req:
+            req_df_clean[col] = pd.to_numeric(req_df_clean[col], errors="coerce")
+    st.line_chart(req_df_clean.set_index(year_col_req))
 else:
     st.warning("⚠️ Could not find a 'Year' column in Requirement dataset.")
     st.write("Columns available:", req_df.columns.tolist())
