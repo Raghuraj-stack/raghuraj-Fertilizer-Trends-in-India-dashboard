@@ -72,16 +72,27 @@ lda_model.fit(X)
 
 terms = vectorizer.get_feature_names_out()
 
+# Define color themes for topics
+color_maps = ["Blues", "Greens", "Reds", "Purples", "Oranges", "Greys"]
+
 st.subheader("Discovered Topics from Fertilizer Data")
 for idx, topic in enumerate(lda_model.components_):
-    top_terms = [terms[i] for i in topic.argsort()[-15:]]  # top 15 words for cloud
+    top_terms = [terms[i] for i in topic.argsort()[-15:]]  # top 15 words
     st.write(f"**Topic {idx+1}:**", ", ".join(top_terms))
 
-    # Generate word cloud
-    word_freq = {terms[i]: topic[i] for i in topic.argsort()[-30:]}  # top 30 weighted words
-    wc = WordCloud(width=600, height=400, background_color="white").generate_from_frequencies(word_freq)
+    # Generate weighted word frequencies
+    word_freq = {terms[i]: topic[i] for i in topic.argsort()[-30:]}  # top 30 words
+
+    # Create word cloud with a distinct color map per topic
+    wc = WordCloud(
+        width=600,
+        height=400,
+        background_color="white",
+        colormap=color_maps[idx % len(color_maps)]
+    ).generate_from_frequencies(word_freq)
 
     fig, ax = plt.subplots()
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
     st.pyplot(fig)
+
