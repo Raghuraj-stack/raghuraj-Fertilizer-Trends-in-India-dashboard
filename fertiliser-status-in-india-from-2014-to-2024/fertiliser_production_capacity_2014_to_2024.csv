@@ -1,0 +1,108 @@
+sector,state,city,company,manufacturing_unit,fertiliser_type,fy_2014_15,fy_2015_16,fy_2016_17,fy_2017_18,fy_2018_19,fy_2019_20,fy_2020_21,fy_2021_22,fy_2022_23,fy_2023_24,fy_2024_25
+public,Haryana,panipat,National Fertilizes Ltd.,National Fertilizers Ltd Panipat,Urea,5.12,5.67,5.43,5.6,5.74,5.52,5.83,4.69,5.7,5.3,4.56
+public,Madhya Pradesh,vijaipur,National Fertilizes Ltd.,National Fertilizers Ltd Vijaipur-I,Urea,9.51,9.9,10.58,10.44,10.29,9.84,9.66,10.41,10.5,10.43,8.84
+public,Madhya Pradesh,vijaipur,National Fertilizes Ltd.,National Fertilizers Ltd Vijaipur-II,Urea,11.38,11.46,11.39,10.88,11.32,10.53,11.27,9.55,11.87,11.24,10.6
+public,Punjab,nangal,National Fertilizes Ltd.,National FertilizersLtd Nangal-II,Urea,4.79,5.46,5.02,5.43,5.41,5.75,5.47,5.32,5.45,5.21,4.88
+public,Punjab,bhatinda,National Fertilizes Ltd.,NationalFertilizers Ltd Bhatinda,Urea,5.61,5.48,5.68,5.63,5.84,5.63,5.77,5.29,5.82,4.72,4.98
+public,Maharashtra,trombay,"Rashtriya Chemicals & FertilizersLtd
+.",Rashtriya Chemicals & Fertilizers Ltd Trombay,"Urea/
+Complexes",10.81,10.89,8.73,9.19,9.53,8.96,8.77,8.99,9.59,9.17,8.43
+public,Maharashtra,thal,"Rashtriya Chemicals & FertilizersLtd
+.",Rashtriya Chemicals & Fertilizers Ltd Thal,Urea,21.78,20.98,21.44,20.61,19.84,20.22,19.12,18.59,18.8,18.42,16.07
+public,Assam,Namrup,BVFCL:-I,Brahmaputra Valley  Fertilizers Corporation Ltd.,Urea,0.98,0.66,0.6,,,,,,,,
+public,Assam,Namrup,BVFCL:- II,Brahmaputra Valley  Fertilizers Corporation Ltd.,Urea,2.61,2.56,2.5,2.12,2.29,1.1,1.3,1.7,2.23,1.8,1.63
+public,Kerala,Udyogamandal,"Fertilizer and
+Chemicals &
+Travancore Ltd.","Fertilizer and Chemicals &
+Travancore Ltd  Udyogamandal",Complexes,2.55,2.0,3.18,3.65,2.72,4.31,4.62,3.23,4.53,4.63,3.44
+public,Kerala,Cochin,"Fertilizer and
+Chemicals &
+Travancore Ltd.","Fertilizer & Chemicals
+Travancore Ltd Cochin",Complexes,4.69,4.08,4.93,4.87,5.06,6.41,6.46,6.4,6.2,6.06,4.44
+public,"Tamil
+Nadu",Chennai,Madras Fertilizer Ltd.,"Madras
+Fertilizer Ltd Chennai","Urea
+&Complexes",4.03,4.44,5.17,4.81,4.2,4.1,5.34,5.28,5.27,4.33,4.76
+cooperative,Gujarat,kandla,"Indian Farmers Fertilizers Co-
+Operative Ltd.","Indian Farmers Fertilizers
+Co-operative Ltd. Kandla",DAP & Complexes,16.41,22.56,25.05,20.29,19.23,23.27,22.83,23.4,24.87,18.9,21.26
+cooperative,Gujarat,kalol,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers Fertilizers
+Co-operativeLtd. Kalol",Urea,5.97,6.01,6.02,6.02,6.02,6.02,6.24,5.45,6.62,6.19,5.47
+cooperative,Odisha,paradeep,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers
+Fertilizers Co-operativeLtd Paradeep",DAP & Complexes,16.92,17.11,16.31,17.24,16.54,19.31,19.88,19.95,21.88,21.17,21.46
+cooperative,Uttar Pradesh,phulpur,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers Fertilizers
+Co-operative Ltd. :Phulpur-I",Urea,5.78,7.58,6.32,7.26,6.71,7.5,7.06,6.4,6.51,7.05,6.97
+cooperative,Uttar Pradesh,phulpur,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers Fertilizers
+Co-operative Ltd.:Phulpur-II",Urea,8.84,10.54,9.92,9.55,10.48,12.16,10.64,8.38,12.24,12.0,9.62
+cooperative,Uttar Pradesh,Aonla,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers Fertilizers
+Co-operative Ltd.:Aonla-I",Urea,10.47,11.33,10.69,8.96,11.22,12.2,11.04,12.07,11.52,12.26,11.08
+cooperative,Uttar Pradesh,Aonla,Indian Farmers Fertilizers Cooperative Ltd.,"Indian Farmers Fertilizers
+Co-operative Ltd.:Aonla-II",Urea,10.21,11.23,10.34,9.31,11.18,10.87,11.77,11.32,11.92,11.36,11.43
+cooperative,Gujarat,hazira,"Krishak Bharati Cooperative
+Ltd",Krishak Bharati Co-operative Ltd Hazira,Urea,22.25,22.68,23.53,22.54,23.42,23.31,23.23,22.08,22.21,23.35,22.24
+private,Andhra Pradesh,kakinada,Nagarjuna Fertilizers and Chemicals Ltd.,"Nagarjuna Fertilizers &
+Chemicals Ltd Kakinada-I",Urea,3.48,6.31,7.88,7.98,3.89,3.28,5.28,7.53,6.08,6.45,1.13
+private,Andhra Pradesh,kakinada,Nagarjuna Fertilizers and Chemicals Ltd.,Nagarjuna Fertilizers & Chemicals Ltd Kakinada-II,Urea,5.83,7.11,7.1,7.92,1.96,3.65,2.16,1.61,5.13,6.65,1.04
+private,Andhra Pradesh,kakinada,Coromandel International Ltd.,Coromandal Internationel Ltd.:Kakinada,DAP & Complexes,12.58,12.79,11.48,16.5,16.16,16.79,16.5,15.59,20.06,19.31,20.11
+private,Andhra Pradesh,vizag,Coromandel International Ltd.,Coromandal Internationel Ltd. Vizag,DAP & Complexes,9.22,9.42,11.23,10.77,10.72,10.76,9.75,10.77,11.43,11.64,10.72
+private,Uttar Pradesh,Gorakhpur,Hindustan Urvarak and Rashayan Ltd. (HURL),HURL:Gorakhpur,Urea,,,,,,,,,8.66,13.5,10.74
+private,Bihar,barauni,Hindustan Urvarak and Rashayan Ltd. (HURL),HURL:Barauni,Urea,,,,,,,,,1.74,10.57,7.65
+private,Jharkhand,sindri,Hindustan Urvarak and Rashayan Ltd. (HURL),HURL:Sindri,Urea,,,,,,,,,1.74,11.44,11.32
+private,Goa,Goa,PPL  Goa (earlier ZACL),PPL : Goa(earlier ZACL),"Urea, DAP &
+Complexes",10.04,10.43,10.49,11.61,11.46,4.24,8.19,6.0,7.75,8.79,9.89
+private,Gujarat,Bharuch,"Gujarat Narmada Valley
+Fertilizers & ChemicalsLtd","Gujarat Narmada Valley
+Fertilizer Chemicals Ltd Bharuch","Urea &
+Complexes",9.1,8.98,9.11,8.66,8.42,8.85,8.1,7.79,7.69,8.28,7.53
+private,Gujarat,Vadodara,Gujarat State Fertilizers & Chemicals Ltd.,"Gujarat State Fertilizers &
+Chemicals Ltd Vadodara","Urea, DAP &
+Complexes",9.51,10.05,9.68,9.46,10.09,9.84,11.09,10.91,11.13,9.89,10.34
+private,Gujarat,Sikka,Gujarat State Fertilizers & Chemicals Ltd.,"Gujarat State Fertilizers &
+Chemicals Ltd Sikka","DAP
+& Complexes",3.88,4.36,4.92,6.78,6.81,6.63,7.93,3.63,2.74,4.4,4.97
+private,Gujarat,Bharuch,Kisan Shakti,"Kisan Shakti, Bharuch",TSP,,,,,,,,,,0.02,0.01
+private,Karnttaka,Manglore,"Manglore Chemicals &
+Fertilizers Ltd.","Manglore Chemicals &
+Fertilizers Ltd Manglore","Urea,DAP
+&Complexes",4.21,5.85,6.42,6.85,6.46,6.73,6.11,6.81,5.62,7.55,7.09
+private,Maharashtra,tajola,Mahadhan Agritech Ltd Taloja,Mahadhan Agritech Ltd Taloja,Complexes,0.39,0.89,2.54,5.65,5.04,4.85,6.56,5.62,5.83,6.08,7.63
+private,Odisha,Paradeep,"Paradeep Phosphate
+Ltd","Paradeep Phosphate
+Ltd Paradeep",DAP & Complexes,10.88,13.21,13.15,12.62,12.02,10.63,10.23,12.49,12.98,14.27,13.93
+private,Rajasthan,Gadepan,"Chambal Fertilizers and
+Chemicals Ltd.","Chambal Fertilizers and
+Chemicals Ltd Gadepan-I",Urea,9.76,10.91,9.66,13.38,11.33,9.51,11.15,10.1,10.22,10.4,10.56
+private,Rajasthan,Gadepan,"Chambal Fertilizers and
+Chemicals Ltd.","Chambal Fertilizers and
+Chemicals Ltd. Gadepan-II",Urea,8.76,10.35,10.36,9.56,9.87,10.45,9.62,9.49,10.39,9.58,9.71
+private,Rajasthan,Gadepan,"Chambal Fertilizers and
+Chemicals Ltd.","Chambal Fertilizers and
+Chemicals Ltd. Gadepan-III",Urea,,,,,3.83,12.7,12.7,13.55,12.86,13.84,12.87
+private,Rajasthan,kota,Shriram Fertilizers & Chemicals Ltd,"Shriram Fertilizers &
+Chemicals Ltd Kota",Urea,3.97,4.01,3.94,4.1,3.9,3.87,4.01,3.92,3.98,4.1,3.72
+private,Rajasthan,udaipur,Patel Phoschem Ltd.,"Patel Phoschem Ltd.Udaipur
+Availability>Sales",TSP & Complex,,,,,,,0.0,,0.04,0.02,0.03
+private,Tamil Nadu,Ennore,Coromandel International Ltd.,"Coromandel International
+Ltd Ennore",Complexes,2.4,1.77,1.43,1.55,2.54,2.2,2.12,2.51,1.4,2.19,0.0
+private,Tamil Nadu,Tuticorin,Southern Petrochemicals Inds.Cor. Ltd,Southern Petrochemicals Inds. Cor. Ltd Tuticorin,Urea,4.92,6.2,5.63,6.59,6.52,5.5,6.2,6.2,7.59,5.23,6.5
+private,Tamil Nadu,Tuticorin,Greenstar Fertilizer Ltd.,Greenstar Fertilizer Ltd Tuticorin,DAP & Complexes,4.22,5.16,5.53,5.39,4.02,5.83,3.6,4.12,5.03,5.06,5.59
+private,Telangana,Ramangundam,"Ramagundam Fertilizers &
+Chemicals Ltd.","RFCL, Ramangundam",Urea,,,,,,0.03,0.02,3.83,8.41,11.12,10.81
+private,Uttar Pradesh,Jagdishpur,"Indorama India (earlier
+GRASIM)",Indorama/ GRASIM/ IGF Jagdishpur,Urea,10.22,12.08,11.61,11.84,11.37,11.15,10.95,10.45,11.17,11.38,11.19
+private,Uttar Pradesh,Babrala,"Yara Fertilizers India
+Pvt. Ltd./TCL","Yara Fertilizers India
+Pvt. Ltd./TCL Babrala",Urea,12.5,12.31,12.14,12.48,13.01,12.84,11.55,12.98,11.82,12.31,12.16
+private,Uttar Pradesh,Shahjahanpur,Kribhco Fertilizers Ltd.,"KFL/ Kribhco Shyam
+Fertilizers Ltd Shahjahanpur",Urea,10.5,9.83,9.32,9.01,10.64,10.34,10.74,9.65,10.95,10.66,10.32
+private,Uttar Pradesh,Kanpur,Kanpur Fertilizers & Ciment Ltd.,KFCL Kanpur,Urea,6.41,7.17,7.23,7.23,6.73,7.23,6.72,6.73,6.28,6.85,5.5
+private,West Bengal,Haldia,IRC Agrochemicals Pvt. Ltd.,Indorama India Haldia,DAP & Complexes,6.56,4.71,3.57,3.83,5.69,5.78,6.7,5.18,4.94,6.01,6.24
+private,West Bengal,Panagarh,Matix Fertilizers & Chemicals Ltd,"Matix Fertilizers &
+Chemicals Ltd  Panagarh",Urea,0.0,0.0,0.0,0.11,,,0.0,6.29,10.52,14.99,13.38
+private,Madhya Pradesh,Sagar,"Madhya Bharat Agro
+Product Ltd.(MBAPL)","Madhya Bharat Agro
+Product Ltd.(MBAPL)",DAP & Complexes,,,,,,,,0.38,0.94,1.27,1.38
+private,Rajasthan,Udaipur,Krishna Phoschem Ltd.,Krishna Phoschem Ltd.,DAP & Complexes,,,,,,,,,0.01,1.49,2.1
+private,Madhya Pradesh,Nirmani,Coromandel International Ltd.,CIL Nirmani,Complexes,,,,,,,,,,,0.46
+private,Rajasthan,Udaipur,Rama Phos Udaipur,Rama Phos-Udaipur,Complexes,,,,,,,,,,,0.01
+private,Rajasthan,Dahej,Hindalco Industries Ltd. Dahej,Hindalco Industries Ltd. Dahej,DAP,2.98,3.24,3.0,,,,,,,,
