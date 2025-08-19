@@ -5,6 +5,7 @@ import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 
+# Download stopwords
 nltk.download("stopwords")
 from nltk.corpus import stopwords
 
@@ -13,8 +14,12 @@ from nltk.corpus import stopwords
 # ===============================
 @st.cache_data
 def load_data():
-    df1 = pd.read_csv("fertiliser-status-in-india-from-2014-to-2024/fertiliser_production_capacity_2014_to_2024.csv")
-    df2 = pd.read_csv("fertiliser-status-in-india-from-2014-to-2024/requirement_availability_sales_fertilisers_2014_to_2024.csv")
+    df1 = pd.read_csv(
+        "fertiliser-status-in-india-from-2014-to-2024/fertiliser_production_capacity_2014_to_2024.csv"
+    )
+    df2 = pd.read_csv(
+        "fertiliser-status-in-india-from-2014-to-2024/requirement_availability_sales_fertilisers_2014_to_2024.csv"
+    )
     return df1, df2
 
 prod_df, req_df = load_data()
@@ -39,30 +44,34 @@ st.line_chart(req_df.set_index("Year"))
 # ===============================
 # Topic Modeling (Scikit-Learn LDA)
 # ===============================
-st.header("Topic Modeling from Fertilizer Reports")
+st.header("Topic Modeling from Fertilizer Dataset")
 
-# Example text corpus from CSV (replace with actual text column if available)
-sample_docs = [
-    "Fertilizer demand increased in 2020 due to higher crop requirements",
-    "Government subsidy boosted fertilizer sales across states",
-    "Production capacity improved with new urea plants",
-    "Fertilizer import dependency decreased in recent years",
-    "Organic fertilizers gaining importance alongside chemical fertilizers"
-]
+# Combine text from requirement, availability, and sales columns
+if all(col in req_df.columns for col in ["Requirement", "Availability", "Sales"]):
+    text_data = (
+        req_df["Requirement"].astype(str) + " " +
+        req_df["Availability"].astype(str) + " " +
+        req_df["Sales"].astype(str)
+    ).tolist()
+else:
+    # fallback: join all columns into text per row
+    text_data = req_df.astype(str).apply(" ".join, axis=1).tolist()
 
-# Preprocess & Vectorize
+# Sidebar for topic selection
+num_topics = st.sidebar.slider("Number of Topics", 2, 6, 3)
+
+# Vectorization
 stop_words = stopwords.words("english")
 vectorizer = CountVectorizer(stop_words=stop_words)
-X = vectorizer.fit_transform(sample_docs)
+X = vectorizer.fit_transform(text_data)
 
 # Train LDA model
-lda_model = LatentDirichletAllocation(n_components=3, random_state=42)
+lda_model = LatentDirichletAllocation(n_components=num_topics, random_state=42)
 lda_model.fit(X)
 
 terms = vectorizer.get_feature_names_out()
 
-st.subheader("Discovered Topics")
+st.subheader("Discovered Topics from Fertilizer Data")
 for idx, topic in enumerate(lda_model.components_):
     top_terms = [terms[i] for i in topic.argsort()[-8:]]
     st.write(f"**Topic {idx+1}:**", ", ".join(top_terms))
-
