@@ -1,3 +1,6 @@
+
+st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -7,13 +10,6 @@ from sklearn.decomposition import LatentDirichletAllocation
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import StringIO
-
-
-
-
-st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
-
-
 
 
 # Download stopwords
