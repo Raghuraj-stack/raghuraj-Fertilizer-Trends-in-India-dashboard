@@ -1,10 +1,12 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import plotly.express as px
 import nltk
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import LatentDirichletAllocation
 from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+from io import StringIO
 
 # Download stopwords
 nltk.download("stopwords")
@@ -40,86 +42,117 @@ year_col_req = get_year_column(req_df)
 # ===============================
 # Dashboard Title
 # ===============================
-st.title("📊 Fertilizer Trends in India (2014–2024)")
+st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
+st.title("🌱 Fertilizer Trends in India (2014–2024)")
 
 # ===============================
-# Production Capacity Trends
+# Tabs for Navigation
 # ===============================
-if year_col_prod:
-    st.header("Fertilizer Production Capacity")
-    prod_df_clean = prod_df.copy()
-    for col in prod_df_clean.columns:
-        if col != year_col_prod:
-            prod_df_clean[col] = pd.to_numeric(prod_df_clean[col], errors="coerce")
-    st.line_chart(prod_df_clean.set_index(year_col_prod))
-else:
-    st.warning("⚠️ Could not find a 'Year' column in Production dataset.")
-    st.write("Columns available:", prod_df.columns.tolist())
+tab1, tab2 = st.tabs(["📊 Fertilizer Trends", "🧠 Topic Modeling"])
 
 # ===============================
-# Requirement & Availability
+# Fertilizer Trends Tab
 # ===============================
-if year_col_req:
-    st.header("Requirement, Availability & Sales")
-    req_df_clean = req_df.copy()
-    for col in req_df_clean.columns:
-        if col != year_col_req:
-            req_df_clean[col] = pd.to_numeric(req_df_clean[col], errors="coerce")
-    st.line_chart(req_df_clean.set_index(year_col_req))
-else:
-    st.warning("⚠️ Could not find a 'Year' column in Requirement dataset.")
-    st.write("Columns available:", req_df.columns.tolist())
+with tab1:
+    st.subheader("Production Capacity and Usage Trends")
+
+    if year_col_prod:
+        prod_df_clean = prod_df.copy()
+        for col in prod_df_clean.columns:
+            if col != year_col_prod:
+                prod_df_clean[col] = pd.to_numeric(prod_df_clean[col], errors="coerce")
+
+        fig1 = px.line(
+            prod_df_clean,
+            x=year_col_prod,
+            y=[c for c in prod_df_clean.columns if c != year_col_prod],
+            markers=True,
+            title="Fertilizer Production Capacity Over Time"
+        )
+        fig1.update_layout(legend_title_text="Fertilizer Type", height=500)
+        st.plotly_chart(fig1, use_container_width=True)
+    else:
+        st.warning("⚠️ No 'Year' column found in Production dataset.")
+        st.write("Columns:", prod_df.columns.tolist())
+
+    if year_col_req:
+        req_df_clean = req_df.copy()
+        for col in req_df_clean.columns:
+            if col != year_col_req:
+                req_df_clean[col] = pd.to_numeric(req_df_clean[col], errors="coerce")
+
+        fig2 = px.line(
+            req_df_clean,
+            x=year_col_req,
+            y=[c for c in req_df_clean.columns if c != year_col_req],
+            markers=True,
+            title="Requirement, Availability & Sales Over Time"
+        )
+        fig2.update_layout(legend_title_text="Category", height=500)
+        st.plotly_chart(fig2, use_container_width=True)
+    else:
+        st.warning("⚠️ No 'Year' column found in Requirement dataset.")
+        st.write("Columns:", req_df.columns.tolist())
 
 # ===============================
-# Topic Modeling (Scikit-Learn LDA)
+# Topic Modeling Tab
 # ===============================
-st.header("Topic Modeling from Fertilizer Dataset")
+with tab2:
+    st.subheader("Discovered Themes in Fertilizer Data")
 
-# Combine text from requirement, availability, and sales columns if present
-if all(col in req_df.columns for col in ["Requirement", "Availability", "Sales"]):
-    text_data = (
-        req_df["Requirement"].astype(str) + " " +
-        req_df["Availability"].astype(str) + " " +
-        req_df["Sales"].astype(str)
-    ).tolist()
-else:
-    # fallback: join all columns into text per row
-    text_data = req_df.astype(str).apply(" ".join, axis=1).tolist()
+    # Combine text data
+    if all(col in req_df.columns for col in ["Requirement", "Availability", "Sales"]):
+        text_data = (
+            req_df["Requirement"].astype(str) + " " +
+            req_df["Availability"].astype(str) + " " +
+            req_df["Sales"].astype(str)
+        ).tolist()
+    else:
+        text_data = req_df.astype(str).apply(" ".join, axis=1).tolist()
 
-# Sidebar for topic selection
-num_topics = st.sidebar.slider("Number of Topics", 2, 6, 3)
+    num_topics = st.sidebar.slider("Number of Topics", 2, 6, 3)
 
-# Vectorization
-stop_words = stopwords.words("english")
-vectorizer = CountVectorizer(stop_words=stop_words)
-X = vectorizer.fit_transform(text_data)
+    # Vectorization
+    stop_words = stopwords.words("english")
+    vectorizer = CountVectorizer(stop_words=stop_words)
+    X = vectorizer.fit_transform(text_data)
 
-# Train LDA model
-lda_model = LatentDirichletAllocation(n_components=num_topics, random_state=42)
-lda_model.fit(X)
+    lda_model = LatentDirichletAllocation(n_components=num_topics, random_state=42)
+    lda_model.fit(X)
 
-terms = vectorizer.get_feature_names_out()
+    terms = vectorizer.get_feature_names_out()
+    color_maps = ["Blues", "Greens", "Reds", "Purples", "Oranges", "Greys"]
 
-# Define color themes for topics
-color_maps = ["Blues", "Greens", "Reds", "Purples", "Oranges", "Greys"]
+    topics_data = []
 
-st.subheader("Discovered Topics from Fertilizer Data")
-for idx, topic in enumerate(lda_model.components_):
-    top_terms = [terms[i] for i in topic.argsort()[-15:]]  # top 15 words
-    st.write(f"**Topic {idx+1}:**", ", ".join(top_terms))
+    for idx, topic in enumerate(lda_model.components_):
+        top_terms = [terms[i] for i in topic.argsort()[-15:]]
+        st.markdown(f"### 🏷️ Topic {idx+1}")
+        st.write(", ".join(top_terms))
 
-    # Generate weighted word frequencies
-    word_freq = {terms[i]: topic[i] for i in topic.argsort()[-30:]}  # top 30 words
+        topics_data.append({"Topic": f"Topic {idx+1}", "Top Words": ", ".join(top_terms)})
 
-    # Create word cloud with a distinct color map per topic
-    wc = WordCloud(
-        width=600,
-        height=400,
-        background_color="white",
-        colormap=color_maps[idx % len(color_maps)]
-    ).generate_from_frequencies(word_freq)
+        word_freq = {terms[i]: topic[i] for i in topic.argsort()[-30:]}
+        wc = WordCloud(
+            width=600,
+            height=400,
+            background_color="white",
+            colormap=color_maps[idx % len(color_maps)]
+        ).generate_from_frequencies(word_freq)
 
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation="bilinear")
-    ax.axis("off")
-    st.pyplot(fig)
+        fig, ax = plt.subplots()
+        ax.imshow(wc, interpolation="bilinear")
+        ax.axis("off")
+        st.pyplot(fig)
+
+    # Download Topics as CSV
+    if topics_data:
+        topics_df = pd.DataFrame(topics_data)
+        csv_buffer = StringIO()
+        topics_df.to_csv(csv_buffer, index=False)
+        st.download_button(
+            label="📥 Download Topics as CSV",
+            data=csv_buffer.getvalue(),
+            file_name="fertilizer_topics.csv",
+            mime="text/csv"
+        )
