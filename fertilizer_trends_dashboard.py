@@ -1,6 +1,3 @@
-
-st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
-
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -11,11 +8,12 @@ from wordcloud import WordCloud
 import matplotlib.pyplot as plt
 from io import StringIO
 
+# set_page_config must come here, after import streamlit as st
+st.set_page_config(page_title="Fertilizer Trends Dashboard", layout="wide")
 
-# Download stopwords
+# now the rest of your code
 nltk.download("stopwords")
 from nltk.corpus import stopwords
-
 # ===============================
 # Load Data
 # ===============================
