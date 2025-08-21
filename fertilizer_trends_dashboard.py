@@ -199,9 +199,14 @@ with tab2:
     topics_data = []
 
     for idx, topic in enumerate(lda_model.components_):
-        top_terms = [terms[i] for i in topic.argsort()[-15:]]
+       # Get top word indices sorted by importance
+        top_indices = topic.argsort()[-15:]
+# Map them back to actual words
+        top_terms = [terms[i] for i in top_indices]
+
         st.markdown(f"### 🏷️ Topic {idx+1}")
         st.write(", ".join(top_terms))
+
 
         topics_data.append({"Topic": f"Topic {idx+1}", "Top Words": ", ".join(top_terms)})
 
