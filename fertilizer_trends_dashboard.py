@@ -92,10 +92,59 @@ tab1, tab2 = st.tabs(["📊 Fertilizer Trends", "🧠 Topic Modeling"])
 # Fertilizer Trends Tab
 # ===============================
 with tab1:
-    st.subheader("Fertilizer Trends Over Time")
+    st.subheader("Production Capacity Trends")
+
+    if year_col_prod:
+        prod_df_clean = prod_df.copy()
+        for col in prod_df_clean.columns:
+            if col != year_col_prod:
+                prod_df_clean[col] = pd.to_numeric(prod_df_clean[col], errors="coerce")
+
+        fig1 = px.line(
+            prod_df_clean,
+            x=year_col_prod,
+            y=[c for c in prod_df_clean.columns if c != year_col_prod],
+            markers=True,
+            title="Fertilizer Production Capacity Over Time"
+        )
+        fig1.update_layout(legend_title_text="Fertilizer Type", height=500)
+        st.plotly_chart(fig1, use_container_width=True)
+
+    st.subheader("Requirement, Availability & Sales Trends")
+
+    if year_col_req:
+        req_df_clean = req_df.copy()
+        for col in req_df_clean.columns:
+            if col != year_col_req:
+                req_df_clean[col] = pd.to_numeric(req_df_clean[col], errors="coerce")
+
+        fig2 = px.line(
+            req_df_clean,
+            x=year_col_req,
+            y=[c for c in req_df_clean.columns if c != year_col_req and c != place_col],
+            markers=True,
+            title="Requirement, Availability & Sales Over Time"
+        )
+        fig2.update_layout(legend_title_text="Category", height=500)
+        st.plotly_chart(fig2, use_container_width=True)
+
+    st.subheader("Compare Fertilizer Usage Between Two Places")
 
     if year_col_req and fertilizer_type and place_col:
         filtered_df = req_df[(req_df[year_col_req] >= year_range[0]) & (req_df[year_col_req] <= year_range[1])]
+
+        # Show summary metrics
+        st.markdown("### 📈 Summary Metrics")
+        colm1, colm2, colm3 = st.columns(3)
+        try:
+            max_val = filtered_df[fertilizer_type].max()
+            min_val = filtered_df[fertilizer_type].min()
+            avg_val = filtered_df[fertilizer_type].mean()
+            colm1.metric("Peak Usage", f"{max_val:.2f}")
+            colm2.metric("Lowest Usage", f"{min_val:.2f}")
+            colm3.metric("Average Usage", f"{avg_val:.2f}")
+        except:
+            st.warning("⚠️ Unable to calculate metrics for selected fertilizer.")
 
         # Compare two places
         col1, col2 = st.columns(2)
@@ -103,18 +152,18 @@ with tab1:
         with col1:
             df1 = filtered_df[filtered_df[place_col] == place1]
             if not df1.empty:
-                fig1 = px.line(df1, x=year_col_req, y=fertilizer_type, markers=True,
+                figp1 = px.line(df1, x=year_col_req, y=fertilizer_type, markers=True,
                                title=f"{fertilizer_type} Trend in {place1}")
-                st.plotly_chart(fig1, use_container_width=True)
+                st.plotly_chart(figp1, use_container_width=True)
             else:
                 st.warning(f"No data available for {place1}")
 
         with col2:
             df2 = filtered_df[filtered_df[place_col] == place2]
             if not df2.empty:
-                fig2 = px.line(df2, x=year_col_req, y=fertilizer_type, markers=True,
+                figp2 = px.line(df2, x=year_col_req, y=fertilizer_type, markers=True,
                                title=f"{fertilizer_type} Trend in {place2}")
-                st.plotly_chart(fig2, use_container_width=True)
+                st.plotly_chart(figp2, use_container_width=True)
             else:
                 st.warning(f"No data available for {place2}")
 
